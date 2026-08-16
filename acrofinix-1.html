@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="S8O2FKWaXhFivV1StAekVjz_iJzE6dFsQKObwONQUFU" />
+
+<title>AcroFinix - Free Online Financial Calculators</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+    color:#222;
+}
+
+header{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:28px 15px;
+}
+
+header h1{
+    font-size:36px;
+}
+
+header p{
+    margin-top:8px;
+    color:#d1d5db;
+}
+
+.search{
+    text-align:center;
+    padding:25px 15px;
+}
+
+.search input{
+    width:90%;
+    max-width:550px;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:auto;
+}
+
+.title{
+    text-align:center;
+    margin:10px 0 25px;
+}
+
+.tools{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:18px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    text-align:center;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#666;
+    line-height:1.5;
+    margin-bottom:18px;
+}
+
+button{
+    padding:12px 22px;
+    border:none;
+    border-radius:7px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-size:15px;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.calculator{
+    display:none;
+    width:92%;
+    max-width:600px;
+    margin:30px auto;
+}
+
+.calculator-box{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.calculator h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+input[type="number"]{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.calculate{
+    width:100%;
+    margin-top:25px;
+}
+
+.result{
+    display:none;
+    margin-top:25px;
+    padding:20px;
+    background:#eef2ff;
+    border-radius:10px;
+}
+
+.result p{
+    margin:10px 0;
+    font-size:18px;
+}
+
+.big{
+    font-size:26px!important;
+    font-weight:bold;
+}
+
+.back{
+    background:#6b7280;
+    width:100%;
+    margin-top:15px;
+}
+
+footer{
+    margin-top:45px;
+    padding:25px;
+    background:#111827;
+    color:white;
+    text-align:center;
+}
+
+footer p{
+    margin:6px;
+}
+
+/* ADVANCE TAX TABLE */
+
+.advance-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+    font-size:15px;
+}
+
+.advance-table th,.advance-table td{
+    padding:10px 6px;
+    text-align:center;
+    border-bottom:1px solid #dbe2f0;
+}
+
+.advance-table th{
+    background:#111827;
+    color:white;
+}
+
+.advance-table tr:last-child td{
+    font-weight:bold;
+    background:#eef2ff;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>AcroFinix</h1>
+    <p>Free Online Financial Calculators & Useful Tools</p>
+</header>
+
+<!-- HOME -->
+
+<div id="home">
+
+    <div class="search">
+        <input type="search" id="searchBox"
+        placeholder="Search a tool..." onkeyup="searchTools()">
+    </div>
+
+    <div class="container">
+
+        <h2 class="title">Popular Financial Tools</h2>
+
+        <div class="tools" id="tools">
+
+            <!-- EMI -->
+            <div class="card tool">
+                <h3>🏠 EMI Calculator</h3>
+                <p>Calculate monthly EMI, total interest and total payment.</p>
+                <button onclick="openCalculator('emiPage')">
+                    Open Tool
+                </button>
+            </div>
+
+            <!-- SIP -->
+            <div class="card tool">
+                <h3>📈 SIP Calculator</h3>
+                <p>Calculate estimated SIP investment returns.</p>
+                <button onclick="openCalculator('sipPage')">
+                    Open Tool
+                </button>
+            </div>
+
+            <!-- FD -->
+            <div class="card tool">
+                <h3>🏦 FD Calculator</h3>
+                <p>Calculate FD maturity amount and interest.</p>
+                <button onclick="openCalculator('fdPage')">
+                    Open Tool
+                </button>
+            </div>
+
+            <!-- PPF -->
+            <div class="card tool">
+                <h3>💰 PPF Calculator</h3>
+                <p>Calculate estimated PPF maturity amount.</p>
+                <button onclick="openCalculator('ppfPage')">
+                    Open Tool
+                </button>
+            </div>
+
+            <!-- GST -->
+            <div class="card tool">
+                <h3>🧾 GST Calculator</h3>
+                <p>Calculate GST amount and final price.</p>
+                <button onclick="openCalculator('gstPage')">
+                    Open Tool
+                </button>
+            </div>
+
+            <!-- ADVANCE TAX -->
+            <div class="card tool">
+                <h3>🧮 Advance Tax Calculator</h3>
+                <p>Calculate advance tax installments and due dates.</p>
+                <button onclick="openCalculator('advancePage')">
+                    Open Tool
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- EMI -->
+
+<div class="calculator" id="emiPage">
+<div class="calculator-box">
+
+<h2>🏠 EMI Calculator</h2>
+
+<label>Loan Amount (₹)</label>
+<input type="number" id="loanAmount" placeholder="2500000">
+
+<label>Interest Rate (% per year)</label>
+<input type="number" id="interestRate" placeholder="7.5" step="0.01">
+
+<label>Loan Tenure (Years)</label>
+<input type="number" id="loanYears" placeholder="20">
+
+<button class="calculate" onclick="calculateEMI()">Calculate EMI</button>
+
+<div class="result" id="emiResult">
+<p>Monthly EMI</p>
+<p class="big" id="emi"></p>
+
+<p>Total Interest</p>
+<p id="totalInterest"></p>
+
+<p>Total Payment</p>
+<p id="totalPayment"></p>
+</div>
+
+<button class="back" onclick="goHome()">← Back to AcroFinix</button>
+
+</div>
+</div>
+
+
+<!-- SIP -->
+
+<div class="calculator" id="sipPage">
+<div class="calculator-box">
+
+<h2>📈 SIP Calculator</h2>
+
+<label>Monthly Investment (₹)</label>
+<input type="number" id="sipMonthly" placeholder="5000">
+
+<label>Expected Return (% per year)</label>
+<input type="number" id="sipRate" placeholder="12">
+
+<label>Investment Period (Years)</label>
+<input type="number" id="sipYears" placeholder="10">
+
+<button class="calculate" onclick="calculateSIP()">Calculate SIP</button>
+
+<div class="result" id="sipResult">
+<p>Invested Amount</p>
+<p id="sipInvested"></p>
+
+<p>Estimated Returns</p>
+<p id="sipReturns"></p>
+
+<p>Future Value</p>
+<p class="big" id="sipFuture"></p>
+</div>
+
+<button class="back" onclick="goHome()">← Back to AcroFinix</button>
+
+</div>
+</div>
+
+
+<!-- FD -->
+
+<div class="calculator" id="fdPage">
+<div class="calculator-box">
+
+<h2>🏦 FD Calculator</h2>
+
+<label>Deposit Amount (₹)</label>
+<input type="number" id="fdPrincipal" placeholder="100000">
+
+<label>Interest Rate (% per year)</label>
+<input type="number" id="fdRate" placeholder="7">
+
+<label>Tenure (Years)</label>
+<input type="number" id="fdYears" placeholder="5">
+
+<button class="calculate" onclick="calculateFD()">Calculate FD</button>
+
+<div class="result" id="fdResult">
+<p>Principal Amount</p>
+<p id="fdPrincipalResult"></p>
+
+<p>Interest Earned</p>
+<p id="fdInterest"></p>
+
+<p>Maturity Amount</p>
+<p class="big" id="fdMaturity"></p>
+</div>
+
+<button class="back" onclick="goHome()">← Back to AcroFinix</button>
+
+</div>
+</div>
+
+
+<!-- PPF -->
+
+<div class="calculator" id="ppfPage">
+<div class="calculator-box">
+
+<h2>💰 PPF Calculator</h2>
+
+<label>Yearly Investment (₹)</label>
+<input type="number" id="ppfDeposit" placeholder="150000">
+
+<label>Interest Rate (% per year)</label>
+<input type="number" id="ppfRate" placeholder="7.1" step="0.01">
+
+<label>Investment Period (Years)</label>
+<input type="number" id="ppfYears" placeholder="15">
+
+<button class="calculate" onclick="calculatePPF()">Calculate PPF</button>
+
+<div class="result" id="ppfResult">
+<p>Total Investment</p>
+<p id="ppfInvested"></p>
+
+<p>Interest Earned</p>
+<p id="ppfInterest"></p>
+
+<p>Maturity Amount</p>
+<p class="big" id="ppfMaturity"></p>
+</div>
+
+<button class="back" onclick="goHome()">← Back to AcroFinix</button>
+
+</div>
+</div>
+
+
+<!-- GST -->
+
+<div class="calculator" id="gstPage">
+<div class="calculator-box">
+
+<h2>🧾 GST Calculator</h2>
+
+<label>Amount (₹)</label>
+<input type="number" id="gstAmount" placeholder="1000">
+
+<label>GST Rate (%)</label>
+<input type="number" id="gstRate" placeholder="18">
+
+<button class="calculate" onclick="calculateGST()">Calculate GST</button>
+
+<div class="result" id="gstResult">
+<p>Original Amount</p>
+<p id="gstOriginal"></p>
+
+<p>GST Amount</p>
+<p id="gstValue"></p>
+
+<p>Total Amount</p>
+<p class="big" id="gstTotal"></p>
+</div>
+
+<button class="back" onclick="goHome()">← Back to AcroFinix</button>
+
+</div>
+</div>
+
+
+<!-- ADVANCE TAX -->
+
+<div class="calculator" id="advancePage">
+<div class="calculator-box">
+
+<h2>🧮 Advance Tax Calculator</h2>
+
+<label>Estimated Total Tax Liability for the Year (₹)</label>
+<input type="number" id="advanceTax" placeholder="120000">
+
+<button class="calculate" onclick="calculateAdvanceTax()">
+Calculate Installments
+</button>
+
+<div class="result" id="advanceResult">
+
+<p>Total Tax Liability</p>
+<p class="big" id="advanceTotal"></p>
+
+<table class="advance-table">
+<thead>
+<tr>
+    <th>Due Date</th>
+    <th>Cumulative %</th>
+    <th>Cumulative Amount</th>
+    <th>Installment Due</th>
+</tr>
+</thead>
+<tbody id="advanceBody">
+</tbody>
+</table>
+
+</div>
+
+<button class="back" onclick="goHome()">← Back to AcroFinix</button>
+
+</div>
+</div>
+
+
+<footer>
+<p>© 2026 AcroFinix. All Rights Reserved.</p>
+<p>acrofinix@gmail.com</p>
+</footer>
+
+
+<script>
+
+/* OPEN CALCULATOR */
+
+function openCalculator(id){
+
+    document.getElementById("home").style.display="none";
+
+    let pages=document.querySelectorAll(".calculator");
+
+    pages.forEach(function(page){
+        page.style.display="none";
+    });
+
+    document.getElementById(id).style.display="block";
+
+    window.scrollTo(0,0);
+}
+
+
+/* HOME */
+
+function goHome(){
+
+    document.getElementById("home").style.display="block";
+
+    let pages=document.querySelectorAll(".calculator");
+
+    pages.forEach(function(page){
+        page.style.display="none";
+    });
+
+    window.scrollTo(0,0);
+}
+
+
+/* EMI */
+
+function calculateEMI(){
+
+    let P=parseFloat(document.getElementById("loanAmount").value);
+    let annualRate=parseFloat(document.getElementById("interestRate").value);
+    let years=parseFloat(document.getElementById("loanYears").value);
+
+    if(!P || !annualRate || !years){
+        alert("Please enter all details.");
+        return;
+    }
+
+    let r=annualRate/12/100;
+    let n=years*12;
+
+    let emi=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+
+    let total=emi*n;
+    let interest=total-P;
+
+    document.getElementById("emi").innerText=
+        "₹"+Math.round(emi).toLocaleString("en-IN");
+
+    document.getElementById("totalInterest").innerText=
+        "₹"+Math.round(interest).toLocaleString("en-IN");
+
+    document.getElementById("totalPayment").innerText=
+        "₹"+Math.round(total).toLocaleString("en-IN");
+
+    document.getElementById("emiResult").style.display="block";
+}
+
+
+/* SIP */
+
+function calculateSIP(){
+
+    let monthly=parseFloat(document.getElementById("sipMonthly").value);
+    let rate=parseFloat(document.getElementById("sipRate").value);
+    let years=parseFloat(document.getElementById("sipYears").value);
+
+    if(!monthly || !rate || !years){
+        alert("Please enter all details.");
+        return;
+    }
+
+    let months=years*12;
+    let r=rate/12/100;
+
+    let future=monthly*
+        ((Math.pow(1+r,months)-1)/r)*
+        (1+r);
+
+    let invested=monthly*months;
+    let returns=future-invested;
+
+    document.getElementById("sipInvested").innerText=
+        "₹"+Math.round(invested).toLocaleString("en-IN");
+
+    document.getElementById("sipReturns").innerText=
+        "₹"+Math.round(returns).toLocaleString("en-IN");
+
+    document.getElementById("sipFuture").innerText=
+        "₹"+Math.round(future).toLocaleString("en-IN");
+
+    document.getElementById("sipResult").style.display="block";
+}
+
+
+/* FD */
+
+function calculateFD(){
+
+    let P=parseFloat(document.getElementById("fdPrincipal").value);
+    let rate=parseFloat(document.getElementById("fdRate").value);
+    let years=parseFloat(document.getElementById("fdYears").value);
+
+    if(!P || !rate || !years){
+        alert("Please enter all details.");
+        return;
+    }
+
+    let maturity=P*Math.pow(1+rate/(4*100),4*years);
+
+    let interest=maturity-P;
+
+    document.getElementById("fdPrincipalResult").innerText=
+        "₹"+Math.round(P).toLocaleString("en-IN");
+
+    document.getElementById("fdInterest").innerText=
+        "₹"+Math.round(interest).toLocaleString("en-IN");
+
+    document.getElementById("fdMaturity").innerText=
+        "₹"+Math.round(maturity).toLocaleString("en-IN");
+
+    document.getElementById("fdResult").style.display="block";
+}
+
+
+/* PPF */
+
+function calculatePPF(){
+
+    let deposit=parseFloat(document.getElementById("ppfDeposit").value);
+    let rate=parseFloat(document.getElementById("ppfRate").value);
+    let years=parseFloat(document.getElementById("ppfYears").value);
+
+    if(!deposit || !rate || !years){
+        alert("Please enter all details.");
+        return;
+    }
+
+    let balance=0;
+
+    for(let i=0;i<years;i++){
+
+        balance=(balance+deposit)*(1+rate/100);
+
+    }
+
+    let invested=deposit*years;
+    let interest=balance-invested;
+
+    document.getElementById("ppfInvested").innerText=
+        "₹"+Math.round(invested).toLocaleString("en-IN");
+
+    document.getElementById("ppfInterest").innerText=
+        "₹"+Math.round(interest).toLocaleString("en-IN");
+
+    document.getElementById("ppfMaturity").innerText=
+        "₹"+Math.round(balance).toLocaleString("en-IN");
+
+    document.getElementById("ppfResult").style.display="block";
+}
+
+
+/* GST */
+/* FIX: earlier version used "rate<0" which does not catch an
+   empty/blank rate field (NaN<0 is false), so a blank rate silently
+   produced "NaN" results instead of showing the alert. Now both
+   fields are validated with isNaN(). */
+
+function calculateGST(){
+
+    let amount=parseFloat(document.getElementById("gstAmount").value);
+    let rate=parseFloat(document.getElementById("gstRate").value);
+
+    if(isNaN(amount) || isNaN(rate) || amount<=0 || rate<0){
+        alert("Please enter valid details.");
+        return;
+    }
+
+    let gst=amount*rate/100;
+    let total=amount+gst;
+
+    document.getElementById("gstOriginal").innerText=
+        "₹"+amount.toLocaleString("en-IN");
+
+    document.getElementById("gstValue").innerText=
+        "₹"+gst.toLocaleString("en-IN");
+
+    document.getElementById("gstTotal").innerText=
+        "₹"+total.toLocaleString("en-IN");
+
+    document.getElementById("gstResult").style.display="block";
+}
+
+
+/* ADVANCE TAX */
+/* Standard Indian advance tax schedule (individuals, HUF, firms,
+   and companies all follow the same cumulative percentages):
+   By 15 Jun -> 15%, by 15 Sep -> 45%, by 15 Dec -> 75%, by 15 Mar -> 100% */
+
+function calculateAdvanceTax(){
+
+    let tax=parseFloat(document.getElementById("advanceTax").value);
+
+    if(isNaN(tax) || tax<=0){
+        alert("Please enter a valid tax amount.");
+        return;
+    }
+
+    let schedule=[
+        {due:"On or before 15 June",pct:15},
+        {due:"On or before 15 September",pct:45},
+        {due:"On or before 15 December",pct:75},
+        {due:"On or before 15 March",pct:100}
+    ];
+
+    let body=document.getElementById("advanceBody");
+    body.innerHTML="";
+
+    let previousCumulative=0;
+
+    schedule.forEach(function(row){
+
+        let cumulativeAmount=tax*row.pct/100;
+        let installment=cumulativeAmount-previousCumulative;
+
+        let tr=document.createElement("tr");
+
+        tr.innerHTML=
+            "<td>"+row.due+"</td>"+
+            "<td>"+row.pct+"%</td>"+
+            "<td>₹"+Math.round(cumulativeAmount).toLocaleString("en-IN")+"</td>"+
+            "<td>₹"+Math.round(installment).toLocaleString("en-IN")+"</td>";
+
+        body.appendChild(tr);
+
+        previousCumulative=cumulativeAmount;
+
+    });
+
+    document.getElementById("advanceTotal").innerText=
+        "₹"+Math.round(tax).toLocaleString("en-IN");
+
+    document.getElementById("advanceResult").style.display="block";
+}
+
+
+/* SEARCH */
+
+function searchTools(){
+
+    let search=document.getElementById("searchBox").value.toLowerCase();
+
+    let cards=document.querySelectorAll(".tool");
+
+    cards.forEach(function(card){
+
+        let text=card.innerText.toLowerCase();
+
+        if(text.includes(search)){
+            card.style.display="block";
+        }else{
+            card.style.display="none";
+        }
+
+    });
+}
+
+</script>
+
+</body>
+</html>
